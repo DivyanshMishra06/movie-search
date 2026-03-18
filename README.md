@@ -26,9 +26,9 @@ A simple and interactive movie search web application built using HTML, CSS, and
 
 ## 📸 Screenshots
 
-![Home Page](screenshot1.png)
-![Movie Page](screenshot2.png)
-![Details Page](screenshot3.png)
+![Home Page](Screenshot1.png)
+![Movie Page](Screenshot2.png)
+![Details Page](Screenshot3.png)
 
 ---
 
