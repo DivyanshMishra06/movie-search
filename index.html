@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Matrix | Find Your Favourite Films</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!--Navbar-->
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <h1 style="color:chocolate">Movie Matrix | Find Your Favourite Films</h1>
+            </div>
+            <div class="search-container">
+                <form action="">
+                    <input type="text" id="searchBox" placeholder="Search movie...">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    
+
+<div class="industry-menu">
+
+<button onclick="showGenres('bollywood')">Bollywood</button>
+<button onclick="showGenres('hollywood')">Hollywood</button>
+<button onclick="showGenres('south indian')">South</button>
+
+<button onclick="fetchTrending()">Trending</button>
+
+</div>
+
+
+<div id="genre-menu"></div>
+    <!--Main section of movie data-->
+    <main>
+        
+            <div id="movies"></div> 
+        
+<section>
+    <div class="search-message">
+        <h2>&#127916; Search Movie Details Here</h2>
+        <p>Type a movie name in the search bar to get full details, cast, trailer and OTT platforms.</p>
+    </div>
+</section>
+</main>
+
+    <!--Footer-->
+    <footer>
+        <h3>&copy; movie matrix 2026</h3>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
