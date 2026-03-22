@@ -1,7 +1,8 @@
 // ==================== movie.js (Updated Safe Version) ====================
 
 // Base URL pointing to your backend server
-const base = "https://movie-matrix-1hww.onrender.com/tmdb";
+const base = "http://localhost:3000/tmdb";
+
 
 const params = new URLSearchParams(window.location.search);
 const movieID = params.get("id");
