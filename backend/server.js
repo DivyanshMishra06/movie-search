@@ -106,5 +106,8 @@ app.get("/test", async (req, res) => {
     res.send("Error fetching test movie");
   }
 });
+app.get("/", (req, res) => {
+  res.send("Backend is running! Use /test or other TMDB routes.");
+});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
