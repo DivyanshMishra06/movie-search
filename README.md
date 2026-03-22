@@ -34,7 +34,7 @@ A simple and interactive movie search web application built using HTML, CSS, and
 
 ## 🌐 Live Demo
 
-https://moviematricx.netlify.app/
+
 
 ---
 
