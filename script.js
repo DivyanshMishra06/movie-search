@@ -1,5 +1,5 @@
 // ==================== BASE URL ====================
-const base = "https://movie-matrix-1hww.onrender.com/tmdb"; // backend URL for Render
+const base = "http://localhost:3000/tmdb";
 // Pagination
 let currentPage = 1;
 
