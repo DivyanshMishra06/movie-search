@@ -110,4 +110,8 @@ app.get("/", (req, res) => {
   res.send("Backend is running! Use /test or other TMDB routes.");
 });
 
+
+app.get("/test", (req, res) => {
+  res.json({ title: "Test Movie", year: 2023 });
+});
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
