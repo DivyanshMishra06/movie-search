@@ -103,7 +103,7 @@ app.get("/test", async (req, res) => {
     res.json(data);
   } catch (err) {
     console.log(err);
-    res.send("Error fetching test movie");
+     res.status(500).json({ error: "Error fetching test movie" });
   }
 });
 app.get("/", (req, res) => {
@@ -111,7 +111,4 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/test", (req, res) => {
-  res.json({ title: "Test Movie", year: 2023 });
-});
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
