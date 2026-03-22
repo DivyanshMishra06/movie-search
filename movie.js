@@ -1,4 +1,8 @@
-const apiKey = "bb335d4eb8c01df91f2c24e5b534ed13";
+// ==================== movie.js (Updated Safe Version) ====================
+
+// Base URL pointing to your backend server
+const base = "http://localhost:3000/tmdb";
+
 const params = new URLSearchParams(window.location.search);
 const movieID = params.get("id");
 
@@ -18,34 +22,40 @@ function showErrorMessage(message){
     div.innerHTML = `<div class="error-message">${message}</div>`;
 }
 
+// Safe fetch function
+async function fetchJSON(url) {
+    try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+    } catch (err) {
+        console.log("Fetch Error:", url, err);
+        return null; // return null if fetch fails
+    }
+}
+
 // Fetch movie details, cast, providers, trailer, similar movies
 async function getMovieDetails(){
-    try{
-        // Movie details
-        const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${apiKey}`);
-        const movie = await movieRes.json();
+    // Movie details
+    const movie = await fetchJSON(`${base}/movie/${movieID}`);
+    if (!movie) return showErrorMessage("⚠ Unable to load movie details");
 
-        // Cast
-        const castRes = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${apiKey}`);
-        const castData = await castRes.json();
+    // Cast
+    const castData = await fetchJSON(`${base}/movie/${movieID}/credits`);
+    const cast = castData?.cast || [];
 
-        // Similar movies
-        const similarRes = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=${apiKey}`);
-        const similarData = await similarRes.json();
+    // Similar movies
+    const similarData = await fetchJSON(`${base}/movie/${movieID}/similar`);
+    const similar = similarData?.results || [];
 
-        // Watch providers
-        const providerRes = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/watch/providers?api_key=${apiKey}`);
-        const providerData = await providerRes.json();
+    // Watch providers
+    const providerData = await fetchJSON(`${base}/movie/${movieID}/watch/providers`);
 
-        // Trailer
-        const videoRes = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${apiKey}`);
-        const videoData = await videoRes.json();
+    // Trailer
+    const videoData = await fetchJSON(`${base}/movie/${movieID}/videos`);
+    const videos = videoData?.results || [];
 
-        showMovieDetails(movie, castData.cast, providerData, videoData.results, similarData.results);
-    }catch(err){
-        console.log(err);
-        showErrorMessage("⚠ Unable to load movie details");
-    }
+    showMovieDetails(movie, cast, providerData, videos, similar);
 }
 
 // Show movie details
@@ -54,13 +64,13 @@ function showMovieDetails(movie, cast, providerData, videos, similar){
 
     // Trailer key
     let trailerKey = "";
-    videos.forEach(v=>{
+    videos.forEach(v => {
         if(v.type==="Trailer" && v.site==="YouTube") trailerKey = v.key;
     });
 
     // Movie poster
     const poster = movie.poster_path ? "https://image.tmdb.org/t/p/w500"+movie.poster_path 
-                                      : "https://dummyimage.com/300x450/cccccc/000000&text=No+Poster";
+                                     : "https://dummyimage.com/300x450/cccccc/000000&text=No+Poster";
 
     // Cast HTML
     let castHTML = "";
@@ -77,10 +87,11 @@ function showMovieDetails(movie, cast, providerData, videos, similar){
     });
 
     // Providers HTML
-    let providerHTML = "";
-    if(providerData.results && providerData.results.IN && providerData.results.IN.flatrate){
+    let providerHTML = "Currently not available on streaming platforms";
+    if(providerData?.results?.IN?.flatrate){
+        providerHTML = "";
         providerData.results.IN.flatrate.forEach(p=>{
-            const logo = "https://image.tmdb.org/t/p/w200"+p.logo_path;
+            const logo = p.logo_path ? "https://image.tmdb.org/t/p/w200"+p.logo_path : "";
             const link = getProviderLink(p.provider_name, movie.title);
             providerHTML += `
                 <a href="${link}" target="_blank" class="provider-card">
@@ -89,7 +100,7 @@ function showMovieDetails(movie, cast, providerData, videos, similar){
                 </a>
             `;
         });
-    } else providerHTML = "Currently not available on streaming platforms";
+    }
 
     // Trailer HTML
     const trailerHTML = trailerKey ? `
@@ -105,7 +116,7 @@ function showMovieDetails(movie, cast, providerData, videos, similar){
         similarHTML = `<h2>Similar Movies</h2><div class="similar-movies">`;
         similar.forEach(s=>{
             const sPoster = s.poster_path ? "https://image.tmdb.org/t/p/w200"+s.poster_path
-                                         : "https://dummyimage.com/200x300/cccccc/000000&text=No+Poster";
+                                          : "https://dummyimage.com/200x300/cccccc/000000&text=No+Poster";
             similarHTML += `
                 <div class="similar-card" onclick="window.location.href='movie.html?id=${s.id}'">
                     <img src="${sPoster}">
@@ -122,7 +133,6 @@ function showMovieDetails(movie, cast, providerData, videos, similar){
             <h2>${movie.title}</h2>
             <div class="poster-container">
                 <img src="${poster}" alt="${movie.title}">
-                ${trailerKey ? `<video src="https://www.youtube.com/embed/${trailerKey}" muted loop></video>` : ""}
             </div>
             <p><strong>Rating ⭐</strong> ${movie.vote_average}</p>
             <p><strong>Release Date:</strong> ${movie.release_date}</p>

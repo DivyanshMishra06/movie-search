@@ -42,7 +42,8 @@ box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
 .search-container input{
-width:440px;
+width:400px;
+max-width: 90%;
 padding:12px 18px;
 border:none;
 outline:none;
@@ -50,7 +51,7 @@ font-size:20px;
 }
 
 .search-container button{
-padding:16px 28px;
+padding:12px 18px;
 border:none;
 background:#f5c518;
 font-weight:bold;
@@ -284,7 +285,7 @@ opacity:0.8;
 footer{
 text-align:center;
 background:#232f3e;
-color:red;
+color:rgb(241, 162, 15);
 padding:20px;
 margin-top:auto;
 }
@@ -347,15 +348,80 @@ transition: transform 0.3s;
 .similar-card img:hover{
 transform: scale(1.08);
 }
+#loadMore{
+   
+    margin: 40px;
+    color: #cc0000;
+    height: 60px;
+    width: 150px;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
 /* ================== Responsive ================== */
-@media(max-width:768px){
 
-.navbar{
-flex-direction:column;
-}
+@media (max-width: 768px) {
 
-.movie-card img{
-height:220px;
-}
+  /* Navbar stacked and centered */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+    width: 100%;
+  }
 
+  /* Search container flex layout */
+  .search-container {
+    display: flex;
+    flex-direction: row;    /* input + button side by side */
+    width: 95%;             /* almost full width on mobile */
+    max-width: 420px;      
+    margin: 10px 0px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+  }
+
+  /* Search input responsive */
+  .search-container input {
+    flex: 1;  
+    min-width: 0;              /* take remaining space */
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 30px 0 0 30px;  /* rounded left side */
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+  }
+
+  /* Search button responsive */
+  .search-container button {
+     flex-shrink: 0;         
+    padding: 8px 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 0 30px 30px 0; /* rounded right side */
+    background: #f5c518;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .search-container button:hover {
+    background: #ffdd45;
+  }
+
+  /* Movie card adjustments for mobile */
+  .movie-card img {
+    height: 220px;
+    width: 100%;
+  }
+
+  /* Optional: make movie card grid 2 per row */
+  #movies {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+  }
 }
