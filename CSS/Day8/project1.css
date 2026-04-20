@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.box{
+    height: 500px;
+    width: 500px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   /* transition: all 3s ease-in 2s; */
+   /* transform: rotate(30deg); */
+   /* transition: all  3s; */
+   /* cursor: pointer; */
+   animation-name: move;
+   animation-duration: 2s;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+   border-radius: 50%;
+}
+@keyframes move {
+    /* from{
+transform: rotate(0deg) translateX(100px);
+    }
+    to{
+transform: rotate(360deg) translateX(100px);
+     } */
+      from{
+transform: rotate(0deg) ;
+    }
+    to{
+transform: rotate(360deg) ;
+    } 
+}
+.box2{
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    transform: translateX(150px);
+   border-radius: 50%;
+}

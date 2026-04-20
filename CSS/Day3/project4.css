@@ -1,0 +1,26 @@
+#flag{
+    height: 300px;
+    width: 500px;
+    background-color: white;
+    position: relative;
+}
+.first{
+    height: 100px;
+    width: 500px;
+    background-color:rgb(255,103,31);
+}
+.second{
+    height: 100px;
+    width: 500px;
+    background-color: white;
+}
+.third{
+    height: 100px;
+    width: 500px;
+    background-color: rgb(4, 106, 56);
+}
+.circle{
+   position:absolute;
+    bottom: 95px;
+    left: 190px;
+} 

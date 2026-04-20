@@ -1,0 +1,40 @@
+#flag{
+    height: 300px;
+    width: 500px;
+    background-color: white;
+    position: relative;
+}
+#red{
+    height: 80px;
+    width: 500px;
+    background-color:rgb(206, 17, 38);
+
+}
+#blue{
+    height: 150px;
+    width: 500px;
+    background-color:rgb(0, 40, 104);
+    position: absolute;
+    top: 80px;
+
+}
+
+#last{
+    height: 80px;
+    width: 500px;
+    background-color:rgb(206, 17, 38);
+    position: absolute;
+    top:150px;
+    
+
+}
+#circle{
+    height: 120px;
+    width: 120px;
+    background-color:white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 95px;
+    left: 180px;
+
+}
