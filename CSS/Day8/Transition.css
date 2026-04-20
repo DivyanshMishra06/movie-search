@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.box{
+    height: 150px;
+    width: 150px;
+    background-color: orange;
+    cursor: pointer;
+    /* transition-property: all;
+    transition-duration: 3s;
+    transition-timing-function:ease-in ;
+    transition-delay: 2s; */
+    /* transition: all 3s ease-in 2s; short hand property */
+transition: all  3s;
+ /* transform: rotate(40deg); */
+ /* transform: skewX(30deg); */
+}
+.box:hover{
+    /* background-color: brown;
+    width: 300px;
+    height: 250px; */
+    /* transform: scale(2); */
+    /* transform: translate(100px, 200px); */
+    transform: rotateX(90deg);
+    /* transform: rotate(30deg); */
+}
