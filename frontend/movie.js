@@ -42,22 +42,22 @@ async function getMovieDetails(){
         div.innerHTML = `<div class="loader">Loading...</div>`;
 
     // Movie details
-    const movie = await fetchJSON(`${base}/movie/${movieID}`);
+    const movie = await fetchJSON(`${base}/tmdb/movie/${movieID}`);
     if (!movie) return showErrorMessage("⚠ Unable to load movie details");
 
     // Cast
-    const castData = await fetchJSON(`${base}/movie/${movieID}/credits`);
+    const castData = await fetchJSON(`${base}/tmdb/movie/${movieID}/credits`);
     const cast = castData?.cast || [];
 
     // Similar movies
-    const similarData = await fetchJSON(`${base}/movie/${movieID}/similar`);
+    const similarData = await fetchJSON(`${base}/tmdb/movie/${movieID}/similar`);
     const similar = similarData?.results || [];
 
     // Watch providers
-    const providerData = await fetchJSON(`${base}/movie/${movieID}/watch/providers`);
+    const providerData = await fetchJSON(`${base}/tmdb/movie/${movieID}/watch/providers`);
 
     // Trailer
-    const videoData = await fetchJSON(`${base}/movie/${movieID}/videos`);
+    const videoData = await fetchJSON(`${base}/tmdb/movie/${movieID}/videos`);
     const videos = videoData?.results || [];
 
     showMovieDetails(movie, cast, providerData, videos, similar);
