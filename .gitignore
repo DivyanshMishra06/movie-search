@@ -1,2 +1,9 @@
 backend/.env
 backend/node_modules/
+
+# Practice folders
+HTML/
+CSS/
+JAVASCRIPT/
+upload/
+

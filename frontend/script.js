@@ -8,6 +8,22 @@ const searchForm = document.querySelector('form');
 const searchBox = document.getElementById("searchBox");
 const moviesDiv = document.getElementById("movies");
 
+let debounceTimer;
+
+searchBox.addEventListener("input", () => {
+    clearTimeout(debounceTimer);
+
+    const query = searchBox.value.trim();
+
+    debounceTimer = setTimeout(() => {
+        if (query.length > 2) {
+            currentPage = 1;
+            searchMovie(currentPage);
+        } else if (query.length === 0) {
+            fetchTrending();
+        }
+    }, 500);
+});
 // TMDB genre IDs
 const genres = {
     action: 28,
@@ -62,6 +78,9 @@ async function searchMovie(page = 1) {
 
     localStorage.setItem("lastSearch", query);
 
+    if(page === 1){
+        moviesDiv.innerHTML = `<div class="loader">Loading...</div>`;
+    }
     try {
         const res = await fetch(`${base}/search/movie/${encodeURIComponent(query)}?page=${page}`);
         const data = await res.json();
@@ -81,6 +100,10 @@ async function fetchTrending(page = 1) {
     localStorage.removeItem("lastSearch");
     localStorage.removeItem("lastGenre");
     localStorage.setItem("lastTrending", "true");
+    
+    if(page === 1){
+    moviesDiv.innerHTML = `<div class="loader">Loading...</div>`;
+}
 
     try {
         const url = `${base}/discover/movie?region=IN&with_original_language=hi&sort_by=popularity.desc&page=${page}`;

@@ -37,6 +37,10 @@ async function fetchJSON(url) {
 
 // Fetch movie details, cast, providers, trailer, similar movies
 async function getMovieDetails(){
+
+        const div = document.getElementById("movieDetails");
+        div.innerHTML = `<div class="loader">Loading...</div>`;
+
     // Movie details
     const movie = await fetchJSON(`${base}/movie/${movieID}`);
     if (!movie) return showErrorMessage("⚠ Unable to load movie details");
