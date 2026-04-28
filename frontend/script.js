@@ -1,5 +1,5 @@
 // ==================== BASE URL ====================
-const base = "http://localhost:3000/tmdb";
+const base = "https://movie-matrix-1hww.onrender.com";
 // Pagination
 let currentPage = 1;
 
