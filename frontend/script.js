@@ -82,7 +82,7 @@ async function searchMovie(page = 1) {
         moviesDiv.innerHTML = `<div class="loader">Loading...</div>`;
     }
     try {
-        const res = await fetch(`${base}/search/movie/${encodeURIComponent(query)}?page=${page}`);
+        const res = await fetch(`${base}/tmdb/search/movie/${encodeURIComponent(query)}?page=${page}`);
         const data = await res.json();
         if (data.results && data.results.length > 0) {
             showMovies(data.results, page > 1);
@@ -106,7 +106,7 @@ async function fetchTrending(page = 1) {
 }
 
     try {
-        const url = `${base}/discover/movie?region=IN&with_original_language=hi&sort_by=popularity.desc&page=${page}`;
+        const url = `${base}/tmdb/discover/movie?region=IN&with_original_language=hi&sort_by=popularity.desc&page=${page}`;
         const res = await fetch(url);
         const data = await res.json();
         if (data.results && data.results.length > 0) {
@@ -134,7 +134,7 @@ async function searchCategory(industry, genreName, page = 1) {
     else if (industry.toLowerCase() === "south indian") language = "ta";
 
     try {
-        const url = `${base}/discover/movie?with_genres=${genreId}&region=${region}&with_original_language=${language}&page=${page}`;
+        const url = `${base}/tmdb/discover/movie?with_genres=${genreId}&region=${region}&with_original_language=${language}&page=${page}`;
         const res = await fetch(url);
         const data = await res.json();
         if (data.results && data.results.length > 0) {
