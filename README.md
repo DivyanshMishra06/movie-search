@@ -51,10 +51,10 @@ backend/
 ├── server.js
 ├── package.json
 ├── package-lock.json
-```
-│
+
+
 ### 🔹 Frontend
-```
+
 frontend/
 ├── index.html
 ├── movie.html
