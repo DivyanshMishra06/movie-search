@@ -57,11 +57,11 @@ movie/
 
 ## 📌 Future Improvements
 
-*🔐 Login / Signup system
-*❤️ Save favorite movies to database
-*📱 Fully responsive UI improvements
-*🎙️ Voice search feature
-*⚡ Backend integration 
+* 🔐 Login / Signup system
+* ❤️ Save favorite movies to database
+* 📱 Fully responsive UI improvements
+* 🎙️ Voice search feature
+* ⚡ Backend integration 
 ---
 
 ## 🙌 Author
