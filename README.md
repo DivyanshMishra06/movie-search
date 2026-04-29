@@ -48,9 +48,9 @@ A simple and interactive movie search web application built using HTML, CSS, and
 ### 🔹 Backend
 
 backend/
-├── server.js
-├── package.json
-├── package-lock.json
+* ├── server.js
+* ├── package.json
+* ├── package-lock.json
 
 
 ### 🔹 Frontend
