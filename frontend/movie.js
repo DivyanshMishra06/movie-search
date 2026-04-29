@@ -108,12 +108,18 @@ function showMovieDetails(movie, cast, providerData, videos, similar){
     }
 
     // Trailer HTML
-    const trailerHTML = trailerKey ? `
-        <h2>Trailer</h2>
-        <a href="https://www.youtube.com/watch?v=${trailerKey}" target="_blank">
-            <button class="watch-trailer-btn">▶ Watch Trailer on YouTube</button>
-        </a>
-    ` : `<h2>Trailer</h2><p>Trailer not available</p>`;
+  const trailerHTML = trailerKey ? `
+    <h2>🎬 Trailer</h2>
+    <div class="trailer-container">
+        <iframe 
+            src="https://www.youtube.com/embed/${trailerKey}"
+            title="Movie Trailer"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+` : `<h2>Trailer</h2><p>Trailer not available</p>`;
 
     // Similar Movies HTML
     let similarHTML = "";

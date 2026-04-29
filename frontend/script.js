@@ -55,18 +55,23 @@ function showErrorMessage(message) {
 // ==================== SHOW MOVIES ====================
 function showMovies(movies, append = false) {
     if(!append) moviesDiv.innerHTML = "";
+    window.currentMovies = movies;
     movies.forEach(movie => {
         const poster = movie.poster_path
             ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
             : "https://dummyimage.com/300x450/cccccc/000000&text=No+Image";
 
-        const movieCard = `
-            <a href="movie.html?id=${movie.id}" class="movie-card">
-                <img src="${poster}" alt="${movie.title}">
-                <h3>${movie.title}</h3>
-                <p>${movie.release_date || ""}</p>
-            </a>
-        `;
+      const movieCard = `
+    <div class="movie-card">
+        <span class="watchlist-btn" onclick="addToWatchlist(${movie.id})">❤️</span>
+
+        <a href="movie.html?id=${movie.id}">
+            <img src="${poster}" alt="${movie.title}">
+            <h3>${movie.title}</h3>
+            <p>${movie.release_date || ""}</p>
+        </a>
+    </div>
+`;
         moviesDiv.innerHTML += movieCard;
     });
 }
@@ -210,3 +215,25 @@ window.addEventListener("load", () => {
         fetchTrending(); // default trending
     }
 });
+function addToWatchlist(id){
+    let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+
+    // 🔥 find movie from current list
+    const movie = window.currentMovies.find(m => m.id === id);
+
+    if(!movie){
+        console.log("Movie not found");
+        return;
+    }
+
+    // duplicate check
+    if(watchlist.find(m => m.id === id)){
+        alert("Already in Watchlist ❤️");
+        return;
+    }
+
+    watchlist.push(movie);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+
+    alert("Added to Watchlist ❤️");
+}

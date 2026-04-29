@@ -26,12 +26,63 @@ z-index:1000;
 
 .navbar{
 display:flex;
-justify-content:space-between;
 align-items:center;
-width: 100%;
+width:100%;
 padding:18px 40px;
+gap:20px;
 }
 
+/* Logo fix */
+.logo{
+flex-shrink:0;
+}
+
+/* ================== Watchlist ================== */
+/* ================== Watchlist ================== */
+.watchlist-link{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    font-weight:bold;
+    white-space:nowrap;
+    margin-left:auto;
+
+    padding:10px 18px;
+    border-radius:30px;
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    position:relative;
+    overflow:hidden;
+}
+
+/* Hover effect */
+.watchlist-link:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Shine animation */
+.watchlist-link::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+    transition:0.5s;
+}
+
+.watchlist-link:hover::before{
+    left:100%;
+}
+
+/* ================== Search ================== */
 .search-container{
 display:flex;
 align-items:center;
@@ -39,11 +90,14 @@ background:white;
 border-radius:30px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+flex:1;
+max-width:500px;
+margin:0 auto;
 }
 
 .search-container input{
-width:400px;
-max-width: 90%;
+width:100%;
 padding:12px 18px;
 border:none;
 outline:none;
@@ -55,7 +109,7 @@ padding:12px 18px;
 border:none;
 background:#f5c518;
 font-weight:bold;
-font-size: 20px;
+font-size:20px;
 cursor:pointer;
 transition:0.3s;
 }
@@ -63,17 +117,16 @@ transition:0.3s;
 .search-container button:hover{
 background:#ffdd45;
 }
+
 .search-container input:focus{
 background:#f9f9f9;
 }
+
 /* ================== Industry Menu ================== */
 .industry-menu{
 text-align:center;
 padding:10px;
-position:sticky;
-top:70px;
 background:#f5f5f5;
-z-index:999;
 }
 
 .industry-menu button{
@@ -82,7 +135,7 @@ padding:12px 20px;
 font-size:20px;
 border:none;
 border-radius:5px;
-font-weight:bold; 
+font-weight:bold;
 cursor:pointer;
 background:#f5c518;
 transition:0.3s;
@@ -97,10 +150,7 @@ box-shadow:0 5px 10px rgba(0,0,0,0.2);
 #genre-menu{
 text-align:center;
 padding:10px;
-position:sticky;
-top:120px;
 background:#f5f5f5;
-z-index:998;
 }
 
 #genre-menu button{
@@ -121,7 +171,7 @@ background:#ff7f50;
 /* ================== Main ================== */
 main{
 flex:1;
-width: 100%;
+width:100%;
 padding:20px;
 }
 
@@ -131,7 +181,7 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
 padding:20px;
-width: 100%;
+width:100%;
 }
 
 /* ================== Movie Card ================== */
@@ -143,11 +193,13 @@ padding:12px;
 box-shadow:0 4px 10px rgba(0,0,0,0.2);
 transition:0.3s;
 cursor:pointer;
+position:relative;
 }
 
 .movie-card:hover{
-transform:scale(1.08);
+transform:scale(1.05);
 box-shadow:0 15px 25px rgba(0,0,0,0.3);
+z-index:1;
 }
 
 .movie-card img{
@@ -155,6 +207,7 @@ width:100%;
 height:380px;
 object-fit:cover;
 border-radius:8px;
+transition: 0.3s;
 }
 
 .movie-card h3{
@@ -166,9 +219,19 @@ margin:10px 0;
 color:gray;
 }
 
+/* ❤️ watchlist button on card */
+.watchlist-btn{
+position:absolute;
+top:10px;
+right:10px;
+font-size:22px;
+cursor:pointer;
+z-index:10;
+}
+
 /* ================== Movie Details ================== */
 .movie-details{
-width: 100%;
+width:100%;
 max-width:1200px;
 margin:20px auto;
 background:white;
@@ -178,14 +241,6 @@ text-align:center;
 box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
-/* Poster container */
-.poster-container{
-margin:0;
-padding:0;
-line-height: 0;
-}
-
-/* Poster image */
 .poster-container img{
 display:block;
 width:450px;
@@ -195,11 +250,9 @@ border-radius:10px;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
-
 .movie-details p{
-font-size:25px;
+font-size:20px;
 margin:5px 0;
-
 }
 
 /* ================== Cast ================== */
@@ -237,7 +290,22 @@ width:60px;
 border-radius:10px;
 }
 
-/* ================== Trailer Button ================== */
+/* ================== Trailer ================== */
+.trailer-container{
+margin:20px auto;
+width:100%;
+max-width:800px;
+aspect-ratio:16/9;
+}
+
+.trailer-container iframe{
+width:100%;
+height:100%;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* ================== Button ================== */
 .watch-trailer-btn{
 padding:12px 20px;
 background:red;
@@ -252,7 +320,7 @@ cursor:pointer;
 background:#cc0000;
 }
 
-/* ================== Error Message ================== */
+/* ================== Error ================== */
 .error-message{
 background:#1e1e1e;
 color:#ff6f61;
@@ -263,172 +331,146 @@ margin:50px auto;
 width:500px;
 max-width:400px;
 box-shadow:0 10px 25px rgba(0,0,0,0.5);
-animation:popIn 0.8s ease-out;
 }
 
-.error-message h2{
+/* ================== Search Message ================== */
+.search-message{
+width:420px;
+max-width:90%;
+margin:120px auto;
+padding:40px 30px;
+background:linear-gradient(135deg,#1e1e1e,#2c2c2c);
+color:#fff;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+position:relative;
+overflow:hidden;
+animation:fadeIn 0.8s ease;
+}
+
+.search-message h2{
+color:#f5c518;
 font-size:28px;
 margin-bottom:10px;
 }
 
-.error-message p{
-font-size:18px;
-opacity:0.8;
+.search-message p{
+opacity:0.85;
+font-size:16px;
 }
 
-@keyframes popIn{
-0%{transform:scale(0.8);opacity:0;}
-100%{transform:scale(1);opacity:1;}
+/* ================== Similar ================== */
+.similar-movies{
+display:flex;
+gap:15px;
+overflow-x:auto;
+padding:10px 0;
+}
+
+.similar-card{
+flex:0 0 auto;
+width:160px;
+text-align:center;
+cursor:pointer;
+}
+
+.similar-card img{
+width:100%;
+border-radius:8px;
+}
+
+/* ================== Load More ================== */
+#loadMore{
+margin:40px;
+color:#cc0000;
+height:60px;
+width:150px;
+border-radius:20px;
+font-size:20px;
+cursor:pointer;
+}
+
+/* ================== Loader ================== */
+.loader{
+text-align:center;
+font-size:24px;
+margin-top:20px;
+color:#ff9800;
+font-weight:bold;
 }
 
 /* ================== Footer ================== */
 footer{
 text-align:center;
 background:#232f3e;
-color:rgb(241, 162, 15);
+color:rgb(241,162,15);
 padding:20px;
 margin-top:auto;
 }
-/* search movie details here */
-.search-message{
-width:420px;
-margin:120px auto;
-background:#1e1e1e;
-color:rgb(246, 233, 233);
-padding:40px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.5);
-animation:fadeIn 0.8s ease;
-}
 
-.search-message h2{
-color:#eb2614;
-font-size:28px;
-margin-bottom:10px;
-}
-
-.search-message p{
-opacity:0.8;
-font-size:16px;
-}
-
+/* ================== Animation ================== */
 @keyframes fadeIn{
-0%{
-opacity:0;
-transform:translateY(20px);
-}
-100%{
-opacity:1;
-transform:translateY(0);
-}
+0%{opacity:0;transform:translateY(20px);}
+100%{opacity:1;transform:translateY(0);}
 }
 
-.similar-movies{
-display: flex;
-gap: 15px;
-overflow-x: auto;   /* horizontal scroll */
-padding: 10px 0;
-scroll-behavior: smooth;
+.remove-btn{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:red;
+    color:white;
+    padding:6px 10px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:14px;
+    z-index:999;
 }
 
-.similar-card{
-flex: 0 0 auto;
-width: 160px;
-text-align: center;
-cursor: pointer;
+.remove-btn:hover{
+    background:#cc0000;
+    transform:scale(1.1);
 }
-
-.similar-card img{
-width: 100%;
-border-radius: 8px;
-transition: transform 0.3s;
-}
-
-.similar-card img:hover{
-transform: scale(1.08);
-}
-#loadMore{
-   
-    margin: 40px;
-    color: #cc0000;
-    height: 60px;
-    width: 150px;
-    border-radius: 20px;
-    font-size: 20px;
-    cursor: pointer;
-}
-.loader {
-    text-align: center;
-    font-size: 24px;
-    margin-top: 20px;
-    color: #ff9800;
-    font-weight: bold;
+.movie-link{
+    display:block;
+    text-decoration:none;
+    color:inherit;
 }
 /* ================== Responsive ================== */
+@media (max-width:768px){
 
-@media (max-width: 768px) {
+.navbar{
+flex-direction:column;
+align-items:center;
+}
 
-  /* Navbar stacked and centered */
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    padding: 5px 10px;
-    width: 100%;
-  }
+.watchlist-link{
+margin-left:0;
+}
 
-  /* Search container flex layout */
-  .search-container {
-    display: flex;
-    flex-direction: row;    /* input + button side by side */
-    width: 95%;             /* almost full width on mobile */
-    max-width: 420px;      
-    margin: 10px 0px;
-    background: white;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    overflow: hidden;
-  }
+.search-container{
+width:95%;
+margin:10px 0;
+}
 
-  /* Search input responsive */
-  .search-container input {
-    flex: 1;  
-    min-width: 0;              /* take remaining space */
-    padding: 8px 12px;
-    font-size: 16px;
-    border-radius: 30px 0 0 30px;  /* rounded left side */
-    outline: none;
-    border: none;
-    box-sizing: border-box;
-    background: transparent;
-  }
+.search-container input{
+font-size:16px;
+padding:8px 12px;
+}
 
-  /* Search button responsive */
-  .search-container button {
-     flex-shrink: 0;         
-    padding: 8px 14px;
-    font-size: 16px;
-    border: none;
-    border-radius: 0 30px 30px 0; /* rounded right side */
-    background: #f5c518;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+.search-container button{
+font-size:16px;
+padding:8px 14px;
+}
 
-  .search-container button:hover {
-    background: #ffdd45;
-  }
+#movies{
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+}
 
-  /* Movie card adjustments for mobile */
-  .movie-card img {
-    height: 220px;
-    width: 100%;
-  }
+.movie-card img{
+height:220px;
+}
 
-  /* Optional: make movie card grid 2 per row */
-  #movies {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-  }
 }
