@@ -56,16 +56,16 @@ backend/
 ### 🔹 Frontend
 
 frontend/
-├── index.html
-├── movie.html
-├── watchlist.html
-├── script.js
-├── movie.js
-├── watchlist.js
-├── style.css
-├── Screenshot1.png
-├── Screenshot2.png
-├── Screenshot3.png
+* ├── index.html
+* ├── movie.html
+* ├── watchlist.html
+* ├── script.js
+* ├── movie.js
+* ├── watchlist.js
+* ├── style.css
+* ├── Screenshot1.png
+* ├── Screenshot2.png
+* ├── Screenshot3.png
 
 
 ## 📌 Future Improvements
