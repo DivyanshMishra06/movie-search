@@ -12,6 +12,7 @@ A simple and interactive movie search web application built using HTML, CSS, and
 * 🎭 Browse movies by genre (Action, Comedy, Horror, Romance, etc.)
 * 📺 Check available streaming platforms
 * 👥 View cast details
+* ❤️ Add to Watchlist feature  
 
 ---
 
@@ -39,7 +40,7 @@ A simple and interactive movie search web application built using HTML, CSS, and
 
 ## 🌐 Live Demo
 
-
+ https://moviematric.netlify.app/
 
 ---
 
@@ -47,30 +48,20 @@ A simple and interactive movie search web application built using HTML, CSS, and
 
 ```
 movie/
-│── index.html
-│── movie.html
-│── script.js
-│── movie.js
-│── style.css
+│
 ```
 
 ---
-
-## ⚙️ How to Run Locally
-
-1. Download or clone the repository
-2. Open the project folder
-3. Open `index.html` in your browser
 
 ---
 
 ## 📌 Future Improvements
 
-* 🔐 User login/signup system
-* ❤️ Add to favorites feature
-* 📱 Make it fully responsive
-* 🎙️ Voice search (like Google mic)
-
+🔐 Login / Signup system
+❤️ Save favorite movies to database
+📱 Fully responsive UI improvements
+🎙️ Voice search feature
+⚡ Backend integration 
 ---
 
 ## 🙌 Author
