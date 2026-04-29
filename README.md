@@ -66,9 +66,7 @@ frontend/
 ├── Screenshot1.png
 ├── Screenshot2.png
 ├── Screenshot3.png
----
 
----
 
 ## 📌 Future Improvements
 
