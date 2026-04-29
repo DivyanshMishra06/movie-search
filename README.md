@@ -18,10 +18,10 @@ A simple and interactive movie search web application built using HTML, CSS, and
 
 ## 🛠️ Tech Stack
 
-* HTML
-* CSS
-* JavaScript
-* TMDB API
+- HTML
+- CSS
+- JavaScript
+- TMDB API
 
 ---
 
