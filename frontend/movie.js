@@ -39,8 +39,10 @@ async function fetchJSON(url) {
 async function getMovieDetails(){
 
         const div = document.getElementById("movieDetails");
-        div.innerHTML = `<div class="loader">Loading...</div>`;
-
+div.innerHTML = `<div class="loader">
+    <div class="spinner"></div>
+  </div>
+`;
     // Movie details
     const movie = await fetchJSON(`${base}/tmdb/movie/${movieID}`);
     if (!movie) return showErrorMessage("⚠ Unable to load movie details");
