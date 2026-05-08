@@ -1,5 +1,3 @@
-// ==================== movie.js (Updated Safe Version) ====================
-
 // Base URL pointing to your backend server
 const base = "https://movie-matrix-1hww.onrender.com";
 

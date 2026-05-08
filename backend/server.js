@@ -11,36 +11,14 @@ const API_KEY = process.env.TMDB_API_KEY?.trim();
 const PORT = process.env.PORT || 3000;
 
 if (!API_KEY) {
-  console.error("❌ TMDB_API_KEY missing in .env!");
+  console.error("TMDB_API_KEY missing in .env!");
   process.exit(1);
 }
 
-console.log("🚀 Server starting...");
-console.log("🔑 Using TMDB API Key:", API_KEY);
+console.log("Server starting...");
+console.log("Using TMDB API Key:", API_KEY);
 
-// ==================== SEARCH MOVIES ====================
-// app.get("/tmdb/search/movie", async (req, res) => {
-//   const { query, page } = req.query;
 
-//   try {
-//     let url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`;
-
-//     if (query) url += `&query=${encodeURIComponent(query)}`;
-//     if (page) url += `&page=${page}`;
-
-//     console.log("🔍 Fetching:", url);
-
-//     const response = await fetch(url);
-//     if (!response.ok) throw new Error(`TMDB error ${response.status}`);
-
-//     const data = await response.json();
-//     res.json(data);
-
-//   } catch (err) {
-//     console.error("❌ Search Error:", err);
-//     res.status(500).json({ error: "Search failed", details: err.message });
-//   }
-// });
 // ===== SEARCH MOVIES =====
 app.get("/tmdb/search/movie/:query", async (req, res) => {
   const query = req.params.query;
@@ -92,20 +70,7 @@ app.get("/tmdb/discover/movie", async (req, res) => {
   }
 });
 
-// ==================== MOVIE DETAILS ====================
-// app.get("/tmdb/movie/:id", async (req, res) => {
-//   const { id } = req.params;
 
-//   try {
-//     const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     res.json(data);
-
-//   } catch (err) {
-//     res.status(500).json({ error: "Movie details failed" });
-//   }
-// });
 app.get("/tmdb/movie/:id", async (req, res) => {
   const { id } = req.params;
 

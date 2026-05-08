@@ -218,7 +218,7 @@ window.addEventListener("load", () => {
 function addToWatchlist(id){
     let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
-    // 🔥 find movie from current list
+    // find movie from current list
     const movie = window.currentMovies.find(m => m.id === id);
 
     if(!movie){

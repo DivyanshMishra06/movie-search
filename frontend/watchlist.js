@@ -1,6 +1,6 @@
 const container = document.getElementById("watchlistMovies");
 
-// ✅ REMOVE FUNCTION
+// REMOVE FUNCTION
 function removeFromWatchlist(id){
     let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
@@ -11,7 +11,7 @@ function removeFromWatchlist(id){
     loadWatchlist(); // reload UI
 }
 
-// ✅ LOAD WATCHLIST FUNCTION
+// LOAD WATCHLIST FUNCTION
 function loadWatchlist(){
     let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
@@ -30,7 +30,7 @@ function loadWatchlist(){
      const card = `
     <div class="movie-card">
 
-        <!-- ❌ REMOVE BUTTON -->
+        <!--  REMOVE BUTTON -->
         <span class="remove-btn" onclick="event.stopPropagation(); removeFromWatchlist(${movie.id})">❌</span>
 
         <a href="movie.html?id=${movie.id}" class="movie-link">
@@ -45,5 +45,5 @@ function loadWatchlist(){
     });
 }
 
-// ✅ RUN ON PAGE LOAD
+//  RUN ON PAGE LOAD
 loadWatchlist();
