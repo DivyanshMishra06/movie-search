@@ -269,29 +269,105 @@ nav{
     transform:scale(1.08);
     box-shadow:0 0 20px rgba(229,9,20,0.5);
 }
-#suggestions{
-    position:absolute;
-    width:100%;
-    max-width:600px;
-    background:#1e1e1e;
-    border-radius:12px;
-    margin-top:8px;
-    overflow:hidden;
-    z-index:1000;
-
-    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+#voiceBtn{
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#444,#666);
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    margin-left:8px;
 }
 
+#voiceBtn:hover{
+    transform:scale(1.08);
+}
+
+#suggestions{
+    position:absolute;
+    
+    top:100%;
+    left:0;
+    width:100%;
+    
+    background:rgba(15,15,15,0.95);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:22px;
+
+    margin-top:12px;
+
+    overflow:hidden;
+
+    z-index:9999;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.6),
+    0 0 20px rgba(229,9,20,0.15);
+
+    animation:fadeIn 0.25s ease;
+}
+
+/* Single suggestion item */
+
 .suggestion-item{
-    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+    padding:16px 18px;
+
     cursor:pointer;
-    border-bottom:1px solid rgba(255,255,255,0.05);
-    transition:0.3s;
+
+    border-bottom:1px solid rgba(255,255,255,0.06);
+
+    transition:0.3s ease;
+}
+
+.suggestion-item:last-child{
+    border-bottom:none;
 }
 
 .suggestion-item:hover{
-    background:#e50914;
+    background:rgba(255,255,255,0.05);
 }
+
+/* Poster */
+
+.suggestion-item img{
+    width:60px;
+    height:85px;
+    object-fit:cover;
+
+    border-radius:10px;
+
+    flex-shrink:0;
+}
+
+/* Movie info */
+
+.suggestion-info{
+    display:flex;
+    flex-direction:column;
+}
+
+.suggestion-info h4{
+    color:white;
+    font-size:22px;
+    font-weight:500;
+    margin-bottom:6px;
+}
+
+.suggestion-info p{
+    color:#a8a8a8;
+    font-size:16px;
+}
+
+
+
 /* ================== Industry Menu ================== */
 .industry-menu{
     text-align:center;
@@ -723,11 +799,33 @@ footer h3{
 
 /* ================== Responsive ================== */
 @media (max-width:768px){
+#suggestions{
+        border-radius:18px;
+        z-index: 99999;
+    }
 
+    .suggestion-item{
+        padding:14px;
+    }
+
+    .suggestion-item img{
+        width:50px;
+        height:75px;
+    }
+
+    .suggestion-info h4{
+        font-size:18px;
+    }
+
+    .suggestion-info p{
+        font-size:14px;
+    }
     .navbar{
         flex-direction:column;
         align-items:center;
         padding:15px;
+        position: relative;
+        z-index: 1000;
     }
 
     .logo{
@@ -742,6 +840,7 @@ footer h3{
     .search-container{
         width:95%;
         margin:10px auto;
+        z-index: 9999;
     }
 
     .search-form input{
@@ -758,6 +857,8 @@ footer h3{
     .watchlist-link{
         width:100%;
         justify-content:center;
+        position: relative;
+        z-index: 1;
     }
 
     #movies{

@@ -30,7 +30,18 @@ searchBox.addEventListener("input", async () => {
 
         div.classList.add("suggestion-item");
 
-        div.innerText = movie.title;
+        const poster = movie.poster_path
+? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+: "https://dummyimage.com/60x90/333/fff&text=No";
+
+div.innerHTML = `
+    <img src="${poster}" alt="${movie.title}">
+
+    <div class="suggestion-info">
+        <h4>${movie.title}</h4>
+        <p>${movie.release_date ? movie.release_date.slice(0,4) : "N/A"}</p>
+    </div>
+`;
 
         div.addEventListener("click", () => {
 
@@ -44,22 +55,7 @@ searchBox.addEventListener("input", async () => {
         suggestions.appendChild(div);
     });
 });
-// let debounceTimer;
 
-// searchBox.addEventListener("input", () => {
-//     clearTimeout(debounceTimer);
-
-//     const query = searchBox.value.trim();
-
-//     debounceTimer = setTimeout(() => {
-//         if (query.length > 2) {
-//             currentPage = 1;
-//             searchMovie(currentPage);
-//         } else if (query.length === 0) {
-//             fetchTrending();
-//         }
-//     }, 500);
-// });
 // TMDB genre IDs
 const genres = {
     action: 28,
