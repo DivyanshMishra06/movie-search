@@ -7,23 +7,59 @@ let currentPage = 1;
 const searchForm = document.querySelector('form');
 const searchBox = document.getElementById("searchBox");
 const moviesDiv = document.getElementById("movies");
+const suggestions = document.getElementById("suggestions");
 
-let debounceTimer;
-
-searchBox.addEventListener("input", () => {
-    clearTimeout(debounceTimer);
+searchBox.addEventListener("input", async () => {
 
     const query = searchBox.value.trim();
 
-    debounceTimer = setTimeout(() => {
-        if (query.length > 2) {
-            currentPage = 1;
+    if(query.length < 2){
+        suggestions.innerHTML = "";
+        return;
+    }
+
+    const response = await fetch(`${base}/suggestions?query=${query}`);
+
+    const data = await response.json();
+
+    suggestions.innerHTML = "";
+
+    data.results.slice(0,5).forEach(movie => {
+
+        const div = document.createElement("div");
+
+        div.classList.add("suggestion-item");
+
+        div.innerText = movie.title;
+
+        div.addEventListener("click", () => {
+
+            searchBox.value = movie.title;
+
+            suggestions.innerHTML = "";
+            currentPage=1;
             searchMovie(currentPage);
-        } else if (query.length === 0) {
-            fetchTrending();
-        }
-    }, 500);
+        });
+
+        suggestions.appendChild(div);
+    });
 });
+// let debounceTimer;
+
+// searchBox.addEventListener("input", () => {
+//     clearTimeout(debounceTimer);
+
+//     const query = searchBox.value.trim();
+
+//     debounceTimer = setTimeout(() => {
+//         if (query.length > 2) {
+//             currentPage = 1;
+//             searchMovie(currentPage);
+//         } else if (query.length === 0) {
+//             fetchTrending();
+//         }
+//     }, 500);
+// });
 // TMDB genre IDs
 const genres = {
     action: 28,
@@ -237,3 +273,9 @@ function addToWatchlist(id){
 
     alert("Added to Watchlist ❤️");
 }
+document.addEventListener("click",(e)=>{
+
+    if(!document.querySelector(".search-container").contains(e.target)){
+        suggestions.innerHTML = "";
+    }
+});

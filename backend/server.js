@@ -9,7 +9,27 @@ app.use(cors());
 
 const API_KEY = process.env.TMDB_API_KEY?.trim();
 const PORT = process.env.PORT || 3000;
+app.get("/suggestions", async (req, res) => {
 
+    try{
+
+        const query = req.query.query;
+
+        const response = await fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
+        );
+
+        const data = await response.json();
+
+        res.json(data);
+
+    }catch(error){
+
+        res.status(500).json({
+            error:"Failed to fetch suggestions"
+        });
+    }
+});
 if (!API_KEY) {
   console.error("TMDB_API_KEY missing in .env!");
   process.exit(1);
@@ -162,10 +182,10 @@ app.get("/test", async (req, res) => {
 
 // ==================== ROOT ====================
 app.get("/", (req, res) => {
-  res.send("✅ Backend is running successfully 🚀");
+  res.send("Backend is running successfully");
 });
 
 // ==================== START SERVER ====================
 app.listen(PORT, () => {
-  console.log(`🌐 Server running on Render`);
+  console.log(`Server running on Render...`);
 });
